@@ -85,6 +85,19 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'This is the new article I had to make',
+    date: 'Feb 11th, 2020',
+    firstParagraph: `Here is a whole lorem of ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Pidgeot Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rattata Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Raticate Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+    secondParagraph: `Here is a whole lorem of ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Pidgeot Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rattata Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Raticate Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+    thirdParagraph: `Here is a whole lorem of ipsum dolor sit amet, consectetur adipiscing elit. Pidgeotto Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Pidgeot Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rattata Lorem ipsum dolor sit amet, consectetur adipiscing
+    elit. Raticate Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
   }
 ];
 
@@ -112,3 +125,40 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+function createComponent(data){
+  const article = document.createElement('div');
+  article.classList.add('article');
+    const articleTitle = document.createElement('h2');
+    articleTitle.textContent = data.title;
+    article.append(articleTitle);
+
+    const date = document.createElement('p');
+    date.classList.add('date');
+    date.textContent = data.date;
+    article.append(date);
+
+    const p1 = document.createElement('p');
+    const p2 = document.createElement('p');
+    const p3 = document.createElement('p');
+    p1.textContent = data.firstParagraph;
+    p2.textContent = data.secondParagraph;
+    p3.textContent = data.thirdParagraph;
+    article.append(p1, p2, p3);
+
+    const button = document.createElement('span');
+    button.classList.add('expandButton');
+    button.textContent = 'Expand';
+    article.append(button);
+
+    button.addEventListener('click', () =>{
+      article.classList.toggle('article-open');
+    })
+
+  return article;
+}
+
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  articles.appendChild(createComponent(data));
+})
